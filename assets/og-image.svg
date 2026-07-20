@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="100%" height="100%">
+  <rect width="1200" height="630" fill="#0f172a" />
+  <circle cx="1000" cy="150" r="300" fill="#16a34a" opacity="0.15" />
+  <circle cx="200" cy="500" r="250" fill="#059669" opacity="0.15" />
+  
+  <g transform="translate(100, 180)">
+    <!-- Logo Icon -->
+    <rect width="140" height="140" rx="32" fill="#16a34a" />
+    <circle cx="70" cy="70" r="45" fill="none" stroke="#ffffff" stroke-width="8" stroke-dasharray="10 5" opacity="0.5" />
+    <path d="M70 35 C90 55 90 85 70 105 C50 85 50 55 70 35 Z" fill="#ffffff" />
+    
+    <!-- Title -->
+    <text x="170" y="85" font-family="system-ui, -apple-system, sans-serif" font-weight="900" font-size="76" fill="#ffffff">AgroSphere <tspan fill="#22c55e">OS</tspan></text>
+    <text x="170" y="130" font-family="system-ui, -apple-system, sans-serif" font-weight="600" font-size="28" fill="#94a3b8">Sistema Operacional Integrado de Gestão Agrícola</text>
+    
+    <!-- Badges -->
+    <g transform="translate(0, 200)">
+      <rect x="0" y="0" width="220" height="48" rx="24" fill="#1e293b" stroke="#334155" />
+      <text x="110" y="30" font-family="system-ui, -apple-system, sans-serif" font-weight="600" font-size="18" fill="#22c55e" text-anchor="middle"> Precision IoT</text>
+      
+      <rect x="240" y="0" width="220" height="48" rx="24" fill="#1e293b" stroke="#334155" />
+      <text x="350" y="30" font-family="system-ui, -apple-system, sans-serif" font-weight="600" font-size="18" fill="#38bdf8" text-anchor="middle"> Real-time Audit</text>
+      
+      <rect x="480" y="0" width="220" height="48" rx="24" fill="#1e293b" stroke="#334155" />
+      <text x="590" y="30" font-family="system-ui, -apple-system, sans-serif" font-weight="600" font-size="18" fill="#a855f7" text-anchor="middle"> Offline PWA</text>
+    </g>
+    
+    <text x="0" y="310" font-family="system-ui, -apple-system, sans-serif" font-weight="400" font-size="22" fill="#cbd5e1">
+      Gestão inteligente de safras, telemetria em tempo real, auditoria completa e conectividade offline.
+    </text>
+  </g>
+</svg>

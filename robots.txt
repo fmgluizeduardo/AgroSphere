@@ -1,0 +1,6 @@
+# AgroSphere OS Robots file
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /admin/
+Sitemap: https://agrosphere-os.app/sitemap.xml
