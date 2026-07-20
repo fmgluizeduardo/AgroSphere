@@ -1,0 +1,25 @@
+{
+  "short_name": "AgroSphere OS",
+  "name": "AgroSphere OS - Sistema Operacional Agrícola",
+  "description": "Sistema Operacional e Plataforma Completa de Gestão para o Agronegócio Moderno",
+  "icons": [
+    {
+      "src": "/assets/favicon.svg",
+      "type": "image/svg+xml",
+      "sizes": "192x192 512x512",
+      "purpose": "any"
+    },
+    {
+      "src": "/assets/favicon.svg",
+      "type": "image/svg+xml",
+      "sizes": "192x192 512x512",
+      "purpose": "maskable"
+    }
+  ],
+  "start_url": "/",
+  "background_color": "#0f172a",
+  "theme_color": "#16a34a",
+  "display": "standalone",
+  "orientation": "any",
+  "categories": ["business", "productivity", "utilities"]
+}

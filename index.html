@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+  
+  <!-- Browser Title -->
+  <title>AgroSphere OS - Interface Audit, Mobile & Cockpit Executivo</title>
+  
+  <!-- Metadata & SEO -->
+  <meta name="description" content="AgroSphere OS - Sistema Operacional de alta precisão com suporte responsivo total para Android, iPhone, Tablet e Desktop." />
+  <meta name="keywords" content="AgroSphere OS, Android agrotech, iPhone agrotech, PWA offline, responsive agrotech" />
+  <meta name="author" content="AgroSphere OS Team" />
+  <meta name="application-name" content="AgroSphere OS" />
+  <meta name="theme-color" content="#00ff87" />
+  <link rel="canonical" href="https://agrosphere-os.app/" />
+  
+  <!-- PWA Manifest & Favicon -->
+  <link rel="manifest" href="/manifest.json" />
+  <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg" />
+  <link rel="apple-touch-icon" href="/assets/favicon.svg" />
+  
+  <!-- Open Graph / Social Media -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="AgroSphere OS" />
+  <meta property="og:title" content="AgroSphere OS - Fully Responsive System" />
+  <meta property="og:description" content="AgroSphere OS testado e otimizado para qualquer resolução e dispositivo." />
+  <meta property="og:image" content="https://agrosphere-os.app/assets/og-image.svg" />
+  <meta property="og:url" content="https://agrosphere-os.app/" />
+  
+  <link rel="stylesheet" href="/assets/styles.css" />
+</head>
+<body>
+  <div class="tech-bg-mesh"></div>
+
+  <!-- Mobile Navigation Slide-Down Overlay -->
+  <div id="mobileNavOverlay" class="mobile-nav-overlay">
+    <a href="#cockpit" class="nav-link active" onclick="closeMobileNav()">📊 Cockpit Executivo</a>
+    <a href="#design-system" class="nav-link" onclick="closeMobileNav()">🎨 Design System</a>
+    <a href="#arquitetura" class="nav-link" onclick="closeMobileNav()">🏗️ Clean Architecture</a>
+    <a href="/docs/ARCHITECTURE.md" class="nav-link" target="_blank" onclick="closeMobileNav()">📚 Documentação</a>
+  </div>
+
+  <!-- Reusable Modal Primitive (Adapts as Bottom Sheet on Mobile) -->
+  <div id="demoModal" class="modal-overlay">
+    <div class="modal-content">
+      <div style="width: 40px; height: 4px; background: var(--border-color); border-radius: 2px; margin: 0 auto 1rem auto; display: block;" class="mobile-only"></div>
+      <div class="modal-header">
+        <h3 class="heading-sm">💬 AgroSphere OS Modal / Bottom Sheet</h3>
+        <button class="modal-close" onclick="closeModal('demoModal')">✕</button>
+      </div>
+      <p class="body-md" style="margin-bottom: 1.5rem;">
+        Este componente foi auditado para funcionar com ergonomia perfeita em <strong>Android, iPhone, Tablets e Desktops</strong>.
+      </p>
+      <div style="display: flex; justify-content: flex-end; gap: var(--space-xs); flex-wrap: wrap;">
+        <button class="btn btn-ghost" onclick="closeModal('demoModal')">Cancelar</button>
+        <button class="btn btn-glow" onclick="closeModal('demoModal'); showToast('Ação confirmada!', 'success');">Confirmar Ação</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Notification Drawer / Bottom Sheet Panel -->
+  <aside id="notificationDrawer" class="notification-drawer">
+    <div style="width: 40px; height: 4px; background: var(--border-color); border-radius: 2px; margin: 0 auto 1rem auto; display: block;" class="mobile-only"></div>
+    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.5rem;">
+      <h3 style="font-size: 1.1rem; font-weight: 700;">🔔 Central de Notificações</h3>
+      <button id="closeNotifBtn" style="background: none; border: none; color: var(--text-muted); cursor: pointer; font-size: 1.25rem;">✕</button>
+    </div>
+    
+    <div class="notif-item" style="padding: 1rem; border-radius: var(--radius-sm); background: var(--bg-surface-elevated); margin-bottom: 0.85rem; border: 1px solid var(--border-color);">
+      <div style="font-weight: 700; color: var(--color-brand-neon);">🤖 Recomendação IA Aplicada</div>
+      <div style="font-size: 0.8rem; color: var(--text-secondary); margin-top: 2px;">Janela de colheita otimizada no Talhão S-04 (+4.2% ganho).</div>
+      <div style="font-size: 0.7rem; color: var(--text-muted); margin-top: 4px;">Há 12 minutos</div>
+    </div>
+
+    <div class="notif-item" style="padding: 1rem; border-radius: var(--radius-sm); background: var(--bg-surface-elevated); margin-bottom: 0.85rem; border: 1px solid var(--border-color);">
+      <div style="font-weight: 700; color: var(--status-warning);">⚠️ Alerta de Estoque Baixo</div>
+      <div style="font-size: 0.8rem; color: var(--text-secondary); margin-top: 2px;">Nível de combustível Diesel atingiu 15% do limite.</div>
+      <div style="font-size: 0.7rem; color: var(--text-muted); margin-top: 4px;">Há 35 minutos</div>
+    </div>
+  </aside>
+
+  <!-- Header Bar -->
+  <header class="navbar">
+    <div class="container nav-container">
+      <div style="display: flex; align-items: center; gap: var(--space-sm);">
+        <button id="mobileMenuBtn" class="mobile-menu-btn" title="Abrir Menu">☰</button>
+        <a href="#" class="brand-logo-wrapper">
+          <img src="/assets/logo.svg" alt="AgroSphere OS Logo" class="brand-logo-img" />
+        </a>
+      </div>
+      
+      <ul class="nav-menu">
+        <li><a href="#cockpit" class="nav-link active">Cockpit Executivo</a></li>
+        <li><a href="#design-system" class="nav-link">Design System</a></li>
+        <li><a href="#arquitetura" class="nav-link">Clean Architecture</a></li>
+        <li><a href="/docs/ARCHITECTURE.md" class="nav-link" target="_blank">Docs</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <!-- Weather Badge Indicator -->
+        <div style="font-size: 0.8rem; background: rgba(255, 255, 255, 0.04); padding: 0.4rem 0.75rem; border-radius: var(--radius-full); border: 1px solid var(--border-color); display: flex; align-items: center; gap: 0.4rem;">
+          <span>🌤️ 28°C</span> <span style="color: var(--text-muted);" class="desktop-only">|</span> <span style="color: var(--color-brand-neon);" class="desktop-only">Ribeirão Preto</span>
+        </div>
+
+        <!-- Notification Bell Button -->
+        <button id="notifBellBtn" class="notif-btn" title="Notificações">
+          <span>🔔</span>
+          <span class="notif-badge">3</span>
+        </button>
+
+        <!-- Dark/Light Switcher Button -->
+        <button id="themeToggleBtn" class="btn btn-outline" style="padding: 0.5rem 0.85rem; font-size: 0.85rem;">
+          ☀️ Light
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- EXECUTIVE COCKPIT SECTION -->
+  <section id="cockpit" class="cockpit-section">
+    <div class="container">
+      <!-- Breadcrumb -->
+      <nav class="breadcrumb" style="display: flex; align-items: center; gap: var(--space-xs); font-size: 0.85rem; color: var(--text-muted); margin-bottom: var(--space-md);">
+        <a href="#" style="color: var(--text-secondary); text-decoration: none;">AgroSphere OS</a>
+        <span>/</span>
+        <span style="color: var(--color-brand-neon); font-weight: 600;">Cockpit Executivo</span>
+      </nav>
+
+      <!-- Cockpit Header -->
+      <div class="cockpit-header-bar">
+        <div class="cockpit-title-group">
+          <h1 class="cockpit-title">Cockpit Executivo</h1>
+          <span class="badge badge-success">
+            <span>●</span> AGROSPHERE OS v2.0.0 • RESPONSIVE
+          </span>
+        </div>
+        <div class="cockpit-controls">
+          <button id="simulateEventBtn" class="btn btn-outline" style="border-color: var(--color-brand-neon); color: var(--color-brand-neon); font-size: 0.85rem;">
+            ⚡ Re-sincronizar Telemetria IA
+          </button>
+        </div>
+      </div>
+
+      <!-- Executive KPIs Bar (Fluid Multi-Breakpoint Cards) -->
+      <div class="executive-kpis-grid">
+        <div class="kpi-card-widget">
+          <div class="kpi-header">
+            <span class="kpi-title-text">Produção Total Est.</span>
+            <span>🚜</span>
+          </div>
+          <div class="kpi-main-val">142.850 t</div>
+          <div class="kpi-sub-trend trend-up">
+            <span>↑ +12.4%</span> <span style="color: var(--text-muted);">vs Safra Anterior</span>
+          </div>
+        </div>
+
+        <div class="kpi-card-widget">
+          <div class="kpi-header">
+            <span class="kpi-title-text">Faturamento Bruto</span>
+            <span>💰</span>
+          </div>
+          <div class="kpi-main-val">R$ 48.25M</div>
+          <div class="kpi-sub-trend trend-up">
+            <span>↑ 38.2%</span> <span style="color: var(--text-muted);">Margem Operacional</span>
+          </div>
+        </div>
+
+        <div class="kpi-card-widget">
+          <div class="kpi-header">
+            <span class="kpi-title-text">Área Cultivada</span>
+            <span>🌾</span>
+          </div>
+          <div class="kpi-main-val">14.850 ha</div>
+          <div class="kpi-sub-trend" style="color: var(--text-secondary);">
+            <span>Soja: 65%</span> • <span>Milho: 35%</span>
+          </div>
+        </div>
+
+        <div class="kpi-card-widget">
+          <div class="kpi-header">
+            <span class="kpi-title-text">Valoração de Estoque</span>
+            <span>📦</span>
+          </div>
+          <div class="kpi-main-val">R$ 12.40M</div>
+          <div class="kpi-sub-trend trend-up">
+            <span>✓ Em Conformidade</span>
+          </div>
+        </div>
+
+        <div class="kpi-card-widget">
+          <div class="kpi-header">
+            <span class="kpi-title-text">Clima & Solo</span>
+            <span>🌡️</span>
+          </div>
+          <div class="kpi-main-val">28°C / 62%</div>
+          <div class="kpi-sub-trend" style="color: var(--text-secondary);">
+            <span>Evapotransp. 4.2mm</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Cockpit Main Grid -->
+      <div class="cockpit-grid-main">
+        <div>
+          <!-- Revenue Chart Container -->
+          <div class="card" style="margin-bottom: var(--space-lg);">
+            <div class="card-header">
+              <h2 class="card-title">📈 Performance Financeira x Custos (R$ M)</h2>
+              <span class="caption" style="color: var(--color-brand-neon); font-family: var(--font-mono);">RESPONSIVE_CANVAS</span>
+            </div>
+            <div id="revenueCostChart" class="chart-container-shared"></div>
+          </div>
+
+          <!-- Responsive Safra Table Container -->
+          <div class="card" style="margin-bottom: var(--space-lg);">
+            <div class="card-header">
+              <h2 class="card-title">🌾 Acompanhamento de Safra & Produção por Talhão</h2>
+              <span class="caption">Telemetria IoT</span>
+            </div>
+            <div class="table-container">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>Talhão / Setor</th>
+                    <th>Cultura</th>
+                    <th>Área (ha)</th>
+                    <th>Produtividade Est.</th>
+                    <th>Progresso Colheita</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>Talhão S-01 (Norte)</strong></td>
+                    <td>Soja Intacta</td>
+                    <td>2.450 ha</td>
+                    <td>82 sc/ha</td>
+                    <td>85%</td>
+                    <td><span class="badge badge-success">Em Colheita</span></td>
+                  </tr>
+                  <tr>
+                    <td><strong>Talhão S-02 (Central)</strong></td>
+                    <td>Soja BRS</td>
+                    <td>3.100 ha</td>
+                    <td>78 sc/ha</td>
+                    <td>60%</td>
+                    <td><span class="badge badge-success">No Prazo</span></td>
+                  </tr>
+                  <tr>
+                    <td><strong>Talhão M-01 (Sul)</strong></td>
+                    <td>Milho Safrinha</td>
+                    <td>4.200 ha</td>
+                    <td>145 sc/ha</td>
+                    <td>20%</td>
+                    <td><span class="badge badge-warning">Atenção Umidade</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Side Widgets -->
+        <div>
+          <!-- AI Insight Card -->
+          <div class="card" style="margin-bottom: var(--space-lg);">
+            <div class="card-header">
+              <h2 class="card-title">🤖 IA Prescritiva AgroSphere</h2>
+              <span class="badge badge-purple">AI MODULE</span>
+            </div>
+            <div style="background: var(--color-brand-tint); border-left: 3px solid var(--color-brand-neon); border-radius: var(--radius-xs); padding: 1rem; margin-bottom: 0.85rem; font-size: 0.875rem;">
+              <strong style="color: var(--color-brand-neon); display: block; margin-bottom: 0.25rem;">Otimização de Janela de Colheita</strong>
+              Ajustar velocidade da ceifeira no Talhão S-01 para quinta-feira das 09h às 16h (+3.8% ganho).
+            </div>
+            <div style="background: var(--color-brand-tint); border-left: 3px solid var(--color-brand-neon); border-radius: var(--radius-xs); padding: 1rem; font-size: 0.875rem;">
+              <strong style="color: var(--color-brand-neon); display: block; margin-bottom: 0.25rem;">Economia de Fertilizante NPK</strong>
+              Reduzir dosagem no Setor M-01 em 8% baseado no mapa do solo. Economia: R$ 42.000.
+            </div>
+          </div>
+
+          <!-- Alerts Card -->
+          <div class="card" style="margin-bottom: var(--space-lg);">
+            <div class="card-header">
+              <h2 class="card-title">⚠️ Alertas da Operação</h2>
+            </div>
+            <div style="display: flex; gap: 0.75rem; padding: 0.85rem; background: var(--status-danger-bg); border: 1px solid rgba(239,68,68,0.3); border-radius: var(--radius-sm); margin-bottom: 0.65rem;">
+              <span>🚨</span>
+              <div>
+                <strong>Pressão da Bomba Baixa</strong>
+                <div style="font-size: 0.75rem; opacity: 0.8;">Setor S-02 • Verificar filtro principal</div>
+              </div>
+            </div>
+            <div style="display: flex; gap: 0.75rem; padding: 0.85rem; background: var(--status-warning-bg); border: 1px solid rgba(245,158,11,0.3); border-radius: var(--radius-sm);">
+              <span>⚠️</span>
+              <div>
+                <strong>Estoque de Diesel em 15%</strong>
+                <div style="font-size: 0.75rem; opacity: 0.8;">Base Central • Solicitar reposição</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Audit Log Table Section -->
+      <div class="card">
+        <div class="card-header">
+          <h2 class="card-title">🛡️ Trilha de Auditoria do Sistema</h2>
+          <span class="caption">Audit Log Hash SHA-256</span>
+        </div>
+        <div class="table-container">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>ID Evento</th>
+                <th>Data / Hora</th>
+                <th>Ator Responsável</th>
+                <th>Tipo de Ação</th>
+                <th>Detalhes Executivos</th>
+                <th>Status Integridade</th>
+              </tr>
+            </thead>
+            <tbody id="auditTableBody">
+              <!-- Dynamically populated by assets/app.js -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DESIGN SYSTEM SHOWCASE GALLERY SECTION -->
+  <section id="design-system" class="section-padding" style="background: var(--bg-surface-elevated);">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">CATÁLOGO DE COMPONENTES</span>
+        <h2 class="section-title">Design System Auditado</h2>
+        <p class="section-subtitle">24 Primitivas Reutilizáveis com Acessibilidade Touch para Telas de 360px a 4K</p>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--space-lg);">
+        <div class="card">
+          <h3 class="heading-sm" style="margin-bottom: var(--space-md);">1. Botões & Touch Area</h3>
+          <div style="display: flex; flex-wrap: wrap; gap: var(--space-xs);">
+            <button class="btn btn-glow">Btn Glow</button>
+            <button class="btn btn-primary">Btn Primary</button>
+            <button class="btn btn-outline">Btn Outline</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3 class="heading-sm" style="margin-bottom: var(--space-md);">2. Inputs Mobile Friendly</h3>
+          <div class="form-group">
+            <label class="form-label">Input Text (Font 16px Anti-Zoom)</label>
+            <input type="text" class="input-text" placeholder="Digite aqui..." />
+          </div>
+        </div>
+
+        <div class="card">
+          <h3 class="heading-sm" style="margin-bottom: var(--space-md);">3. Modais & Bottom Sheet</h3>
+          <button class="btn btn-outline" onclick="openModal('demoModal')">Abrir Modal / Sheet</button>
+          <button class="btn btn-primary" onclick="showToast('Notificação disparada com sucesso!', 'info')" style="margin-top: 8px;">Disparar Toast</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Rodapé Moderno -->
+  <footer style="background: #030604; border-top: 1px solid var(--border-color); padding: var(--space-2xl) 0 var(--space-xl) 0;">
+    <div class="container">
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: var(--space-xl); margin-bottom: var(--space-xl);">
+        <div>
+          <a href="#" class="brand-logo-wrapper">
+            <img src="/assets/logo.svg" alt="AgroSphere OS Logo" style="height: 32px;" />
+          </a>
+          <p style="color: var(--text-muted); font-size: 0.85rem; margin-top: 0.75rem;">
+            AgroSphere OS — Sistema Operacional Agrícola para Android, iPhone, Tablets e Desktops.
+          </p>
+        </div>
+
+        <div>
+          <h4 style="color: var(--text-primary); font-size: 0.95rem; margin-bottom: 0.85rem;">Status PWA</h4>
+          <div style="color: var(--color-brand-neon); font-size: 0.85rem; font-weight: 700;">
+            ● PWA Mobile Ready v2.0.0
+          </div>
+        </div>
+      </div>
+
+      <div style="border-top: 1px solid rgba(255,255,255,0.05); padding-top: 1.25rem; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem; color: var(--text-muted); font-size: 0.85rem;">
+        <div>© 2026 <strong>AgroSphere OS</strong>. Todos os direitos reservados.</div>
+        <div>Responsividade Auditada | Licença MIT</div>
+      </div>
+    </div>
+  </footer>
+
+  <script type="module" src="/assets/app.js"></script>
+</body>
+</html>
